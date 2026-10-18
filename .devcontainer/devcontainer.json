@@ -1,0 +1,23 @@
+{
+  "name": "МКР 2: запити, транзакції, індекси (Python і PostgreSQL 18)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/mkr",
+  "postCreateCommand": "pip install --user -r requirements.txt",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-ossdata.vscode-pgsql"
+      ],
+      "settings": {
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": [
+          "tests"
+        ],
+        "files.encoding": "utf8"
+      }
+    }
+  }
+}
