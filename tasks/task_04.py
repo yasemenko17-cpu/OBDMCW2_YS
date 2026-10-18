@@ -1,8 +1,5 @@
-"""МКР OBDZ-MKR02. Завдання 04: Два індекси для вибірок за клієнтом і за датою.
-
-Умова — у картці завдання 4 файла student.md."""
-
-
 def indexes() -> str:
-    """Повертає SQL-скрипт із командами CREATE INDEX."""
-    raise NotImplementedError  # TODO: реалізуйте за карткою
+    return """
+    CREATE INDEX idx_sale_log_customer_id ON sale_log(customer_id);
+    CREATE INDEX idx_sale_log_sold_on ON sale_log(sold_on);
+    """

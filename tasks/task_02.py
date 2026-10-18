@@ -1,8 +1,20 @@
-"""МКР OBDZ-MKR02. Завдання 02: Покупки, сума яких перевищує середню суму покупки того самого товару.
-
-Умова — у картці завдання 2 файла student.md."""
-
-
 def query() -> str:
-    """Повертає текст одного запиту SELECT (без зайвих команд)."""
-    raise NotImplementedError  # TODO: реалізуйте за карткою
+    return """
+    WITH sub AS (
+        SELECT 
+            p.id,
+            pr.title,
+            (p.quantity * pr.price) AS amount,
+            AVG(p.quantity * pr.price) OVER (PARTITION BY p.product_id) AS avg_amount
+        FROM purchase p
+        JOIN product pr ON p.product_id = pr.id
+    )
+    SELECT 
+        id,
+        title,
+        amount,
+        ROUND(avg_amount, 2) AS avg_amount
+    FROM sub
+    WHERE amount > avg_amount
+    ORDER BY id;
+    """
